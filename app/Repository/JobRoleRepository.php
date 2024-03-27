@@ -9,15 +9,6 @@ use App\Services\JobRoleService;
 class JobRoleRepository 
 {
   /**
-   * Get all job roles
-   * @return Array | Collection
-   */
-  public function findAll(): Array | Collection
-  {
-    return JobRole::all();
-  }
-
-  /**
    * Create a new job role
    * @param array JobRole $data | null
    */
@@ -27,14 +18,12 @@ class JobRoleRepository
   }
 
   /**
-   * Update a job role
-   * @param array $data
+   * Find a job role
    * @param int $id
-   * @return JobRole | null
    */
-  public function findOneAndUpdate(array $data, int $id): JobRole | null
+  public function findOne(int $id): JobRole | null
   {
-    return JobRole::where('id', $id)->update($data);
+    return JobRole::find($id);
   }
 
   /**

@@ -12,26 +12,11 @@ use App\Http\Requests\JobRoleInputRequest;
 interface JobRoleInterface
 {
   /**
-   * Get all job roles
-   * @param Request $request
-   * @return JsonResponse
-   */
-  public function getAllJobRoles(): JsonResponse|Response;
-
-  /**
    * Create a new job role
    * @param Request $request
    * @return JsonResponse
    */
   public function createJobRole(JobRoleInputRequest $request): JsonResponse|Response;
-
-  /**
-   * Update a job role
-   * @param Request $request
-   * @param int $id, array $data
-   * @return JsonResponse
-   */
-  public function updateJobRole(array $data, int $id): JsonResponse|Response;
 
   /**
    * Delete a job role

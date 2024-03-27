@@ -46,10 +46,6 @@ class AdminController extends Controller implements EmployeeInterface, JobRoleIn
   {
   }
 
-  public function getAllJobRoles(): JsonResponse|Response
-  {
-  }
-
   public function createJobRole(JobRoleInputRequest $request): JsonResponse|Response
   {
     $data = $this->jobRoleService->createJobRole($request->validated());
@@ -58,12 +54,11 @@ class AdminController extends Controller implements EmployeeInterface, JobRoleIn
     : response()->json(['message' => 'Job role creation failed'], ResponseCode::HTTP_INTERNAL_SERVER_ERROR);
   }
 
-  public function updateJobRole(array $data, int $id): JsonResponse|Response
-  {
-  }
-
   public function deleteJobRole(int $id): JsonResponse|Response
   {
+    return $this->jobRoleService->deleteJobRole($id)
+    ? response()->json(['success' => true, 'message' => 'Job role deleted successfully'], ResponseCode::HTTP_OK)
+    : response()->json(['message' => 'Job role deletion failed'], ResponseCode::HTTP_INTERNAL_SERVER_ERROR);
   }
 
   public function getJobRole($id): JsonResponse|Response
