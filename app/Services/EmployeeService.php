@@ -50,7 +50,7 @@ class EmployeeService
    * @param int $id
    * @return Employee | null
    */
-  public function updateEmployee(array $data, int $id): Employee | null
+  public function updateEmployee(array $data, int $id): Collection | null
   {
     return $this->employeeRepository->findOneAndUpdate($data, $id);
   }

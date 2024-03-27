@@ -38,9 +38,13 @@ class AdminController extends Controller implements EmployeeInterface, JobRoleIn
     : response()->json(['message' => 'Employee creation failed'], ResponseCode::HTTP_BAD_REQUEST);
   }
 
-  public function updateEmployee(Request $request, int $id): JsonResponse|Response
+  public function updateEmployee(int $id, Request $request): JsonResponse|Response
   {
-    
+    $data_array = $request->all();
+    $data = $this->employeeService->updateEmployee($data_array, $id);
+    return $data
+    ? response()->json(['success' => true, 'message' => 'Employee updated successfully', 'data' => $data], ResponseCode::HTTP_OK)
+    : response()->json(['message' => 'Employee update failed'], ResponseCode::HTTP_BAD_REQUEST);
   }
 
   public function deleteEmployee(int $id): JsonResponse|Response
@@ -80,10 +84,7 @@ class AdminController extends Controller implements EmployeeInterface, JobRoleIn
 
   public function getAllJobRoles(): JsonResponse|Response
   {
-    $data = $this->jobRoleService->getAllJobRoles();
-    return $data
-    ? response()->json(['success' => true, 'message' => 'Job roles retrieved successfully', 'data' => $data], ResponseCode::HTTP_OK)
-    : response()->json(['message' => 'Job roles not found'], ResponseCode::HTTP_NOT_FOUND);
+    return response()->json(['success' => true, 'message' => 'Job roles retrieved successfully', 'data' => $this->jobRoleService->getAllJobRoles()], ResponseCode::HTTP_OK);
   }
 }
 
