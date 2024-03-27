@@ -19,7 +19,6 @@ use App\Http\Controllers\AdminController;
 //     return $request->user();
 // });
 
-//create route group for job roles
 Route::prefix('job-roles')->group(function () {
     Route::post('/', [AdminController::class, 'createJobRole']);
     Route::delete('/{id}', [AdminController::class, 'deleteJobRole']);
