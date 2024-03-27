@@ -7,7 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\JobInputRequest;
+use App\Http\Requests\JobRoleInputRequest;
 
 interface JobRoleInterface
 {
@@ -23,7 +23,7 @@ interface JobRoleInterface
    * @param Request $request
    * @return JsonResponse
    */
-  public function createJobRole(JobInputRequest $request): JsonResponse|Response;
+  public function createJobRole(JobRoleInputRequest $request): JsonResponse|Response;
 
   /**
    * Update a job role

@@ -44,7 +44,7 @@ class Handler extends ExceptionHandler
         $this->renderable(function (Throwable $e, $request) {
             return response()->json([
                 'error' => 'server_error',
-                'error_description' => 'An error occurred on the server.',
+                'error_description' => $e->getMessage(),
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         });
     }

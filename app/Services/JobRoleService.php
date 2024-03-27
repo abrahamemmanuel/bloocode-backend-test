@@ -6,7 +6,7 @@ namespace App\Services;
 use App\Models\JobRole;
 use App\Repository\JobRoleRepository;
 
-class JobService
+class JobRoleService
 {
   private $jobRoleRepository;
 
