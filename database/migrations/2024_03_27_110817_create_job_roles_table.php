@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('job_roles', function (Blueprint $table) {
             $table->id();
+            $table->enum('title', ['manager', 'developer', 'design', 'scrum master']);
+            $table->text('description');
             $table->timestamps();
         });
     }

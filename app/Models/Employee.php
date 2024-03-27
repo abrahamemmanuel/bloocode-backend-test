@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'email',
+        'phone',
+        'dob',
+        'home_address',
+    ];
+
+    protected $casts = [
+        'dob' => 'datetime',
+    ];
+
+    public function role()
+    {
+        return $this->belongsTo(JobRole::class, 'employee_job_role', 'employee_id', 'job_role_id')->withPivot('status');
+    }
 }
