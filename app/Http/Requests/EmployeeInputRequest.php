@@ -4,6 +4,8 @@ declare(strict_types = 1);
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
+use App\Models\JobRole;
 
 class EmployeeInputRequest extends FormRequest
 {
@@ -12,7 +14,7 @@ class EmployeeInputRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +28,7 @@ class EmployeeInputRequest extends FormRequest
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email:rfc', 'max:255'],
-            'job_role_id' => ['required', 'integer'],
+            'job_role_id' => ['required', 'integer', 'exists:job_roles,id'],
             'phone' => ['required', 'string', 'max:255'],
             'home_address' => ['required', 'string', 'max:255'],
             'dob' => ['required', 'date'],

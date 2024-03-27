@@ -32,6 +32,10 @@ class AdminController extends Controller implements EmployeeInterface, JobRoleIn
 
   public function createEmployee(EmployeeInputRequest $request): JsonResponse|Response
   {
+    $data = $this->employeeService->createEmployee($request->validated());
+    return $data
+    ? response()->json(['success' => true, 'message' => 'Employee created successfully', 'data' => $data], ResponseCode::HTTP_CREATED)
+    : response()->json(['message' => 'Employee creation failed'], ResponseCode::HTTP_BAD_REQUEST);
   }
 
   public function updateEmployee(array $data, int $id): JsonResponse|Response

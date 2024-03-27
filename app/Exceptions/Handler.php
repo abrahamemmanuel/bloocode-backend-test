@@ -27,6 +27,7 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
+       
         $this->renderable(function (NotFoundHttpException $e, $request) {
             return response()->json([
                 'error' => 'invalid_url',
@@ -43,9 +44,9 @@ class Handler extends ExceptionHandler
 
         $this->renderable(function (Throwable $e, $request) {
             return response()->json([
-                'error' => 'server_error',
+                'error' => 'error_occurred',
                 'error_description' => $e->getMessage(),
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            ], Response::HTTP_BAD_REQUEST);
         });
     }
 }

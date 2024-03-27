@@ -19,13 +19,17 @@ use App\Http\Controllers\AdminController;
 //     return $request->user();
 // });
 
-Route::get('/', function (Request $request) {
-    return 'Hello World';
-});
-
 //create route group for job roles
 Route::prefix('job-roles')->group(function () {
     Route::post('/', [AdminController::class, 'createJobRole']);
     Route::delete('/{id}', [AdminController::class, 'deleteJobRole']);
     Route::get('/{id}', [AdminController::class, 'getJobRole']);
+});
+
+Route::prefix('employees')->group(function () {
+    Route::get('/', [AdminController::class, 'getAllEmployees']);
+    Route::post('/', [AdminController::class, 'createEmployee']);
+    Route::put('/{id}', [AdminController::class, 'updateEmployee']);
+    Route::delete('/{id}', [AdminController::class, 'deleteEmployee']);
+    Route::get('/{id}/{name}', [AdminController::class, 'getEmployee']);
 });
