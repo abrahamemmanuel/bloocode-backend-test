@@ -34,7 +34,7 @@ class EmployeeRepository
    * Update an employee
    * @param array $data
    * @param int $id
-   * @return Employee | null
+   * @return Collection | null
    */
   public function findOneAndUpdate(array $data, int $id): Collection | null
   {
