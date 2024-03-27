@@ -50,6 +50,9 @@ class AdminController extends Controller implements EmployeeInterface, JobRoleIn
 
   public function deleteEmployee(int $id): JsonResponse|Response
   {
+    return $this->employeeService->deleteEmployee($id)
+    ? response()->json(['success' => true, 'message' => 'Employee deleted successfully'], ResponseCode::HTTP_OK)
+    : response()->json(['message' => 'Employee deletion failed'], ResponseCode::HTTP_BAD_REQUEST);
   }
 
   public function getEmployee(int $id, Request $request): JsonResponse|Response
