@@ -21,7 +21,7 @@ class Employee extends Model
         'dob' => 'datetime',
     ];
 
-    public function role()
+    public function jobRoles()
     {
         return $this->belongsTo(JobRole::class, 'employee_job_role', 'employee_id', 'job_role_id')->withPivot('status');
     }

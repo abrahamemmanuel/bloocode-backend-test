@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Repository\EmployeeRepository;
 use App\Models\JobRole;
 use App\Repository\JobRoleRepository;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeService
 {
@@ -34,7 +35,12 @@ class EmployeeService
    */
   public function createEmployee(array $data): Employee | null
   {
-    return $this->employeeRepository->create($data);
+    $employee = $this->employeeRepository->create($data);
+    DB::table('employee_job_role')->insert([
+      'employee_id' => $employee->id,
+      'job_role_id' => $data['job_role_id'],
+    ]);
+    return $employee;
   }
 
   /**
