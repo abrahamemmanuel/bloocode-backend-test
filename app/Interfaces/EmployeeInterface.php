@@ -32,7 +32,7 @@ interface EmployeeInterface
    * @param array $data
    * @return JsonResponse
    */
-  public function updateEmployee(array $data, int $id): JsonResponse|Response;
+  public function updateEmployee(Request $request, int $id): JsonResponse|Response;
 
   /**
    * Delete an employee

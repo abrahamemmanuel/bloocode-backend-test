@@ -5,6 +5,7 @@ namespace App\Services;
 
 use App\Models\JobRole;
 use App\Repository\JobRoleRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class JobRoleService
 {
@@ -42,5 +43,14 @@ class JobRoleService
   public function getJobRole(int $id): JobRole | null
   {
     return $this->jobRoleRepository->findOne($id);
+  }
+
+  /**
+   * Get all job roles
+   * @return Array | Collection
+   */
+  public function getAllJobRoles(): Collection | null
+  {
+    return $this->jobRoleRepository->findAll();
   }
 }

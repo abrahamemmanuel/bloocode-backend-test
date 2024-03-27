@@ -24,6 +24,7 @@ Route::prefix('job-roles')->group(function () {
     Route::post('/', [AdminController::class, 'createJobRole']);
     Route::delete('/{id}', [AdminController::class, 'deleteJobRole']);
     Route::get('/{id}', [AdminController::class, 'getJobRole']);
+    Route::get('/', [AdminController::class, 'getAllJobRoles']);
 });
 
 Route::prefix('employees')->group(function () {

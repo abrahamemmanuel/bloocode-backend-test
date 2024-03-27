@@ -37,6 +37,9 @@ class EmployeeRepository
    */
   public function findOneAndUpdate(array $data, int $id): Employee | null
   {
+    DB::table('employee_job_role')->where('employee_id', $id)->update([
+      'job_role_id' => $data['job_role_id'],
+    ]);
     return Employee::where('id', $id)->update($data);
   }
 

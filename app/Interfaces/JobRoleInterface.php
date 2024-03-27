@@ -11,6 +11,13 @@ use App\Http\Requests\JobRoleInputRequest;
 
 interface JobRoleInterface
 {
+
+  /**
+   * Get all job roles
+   * @return JsonResponse
+   */
+  public function getAllJobRoles(): JsonResponse|Response;
+
   /**
    * Create a new job role
    * @param Request $request

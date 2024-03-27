@@ -5,6 +5,7 @@ namespace App\Repository;
 
 use App\Models\JobRole;
 use App\Services\JobRoleService;
+use Illuminate\Database\Eloquent\Collection;
 
 class JobRoleRepository 
 {
@@ -15,6 +16,16 @@ class JobRoleRepository
   public function create(array $data): JobRole | null
   {
     return JobRole::create($data);
+  }
+
+  /**
+   * Get all job roles
+   * @param null
+   * @return Array | Collection
+   */
+  public function findAll(): Collection | null
+  {
+    return JobRole::all();
   }
 
   /**
