@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function (Request $request) {
     return 'Hello World';
+});
+
+//create route group for job roles
+Route::prefix('job-roles')->group(function () {
+    Route::get('/', [AdminController::class, 'getAllJobRoles']);
+    Route::post('/', [AdminController::class, 'createJobRole']);
+    Route::put('/{id}', [AdminController::class, 'updateJobRole']);
+    Route::delete('/{id}', [AdminController::class, 'deleteJobRole']);
+    Route::get('/{id}', [AdminController::class, 'getJobRole']);
 });

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Interfaces\EmployeeInterface;
 use App\Http\Requests\EmployeeInputRequest;
 use App\Http\Requests\JobInputRequest;
+use App\Services\EmployeeService;
+use App\Services\JobRoleService;
 use App\Http\Controllers\Controller;
 
 class AdminController extends Controller implements EmployeeInterface, JobRoleInterface
