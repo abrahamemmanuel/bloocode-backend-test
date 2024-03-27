@@ -8,6 +8,7 @@ use App\Repository\EmployeeRepository;
 use App\Models\JobRole;
 use App\Repository\JobRoleRepository;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
 
 class EmployeeService
 {
@@ -69,8 +70,8 @@ class EmployeeService
    * @param int $id
    * @param string $name
    */
-  public function getEmployee(int $id, string $name): Employee | null
+  public function getEmployee(int $id, string $name = ""): Collection | null
   {
-    return Employee::where('id', $id)->where('name', $name)->first();
+    return $this->employeeRepository->findByIdOrName($id, $name);
   }
 }

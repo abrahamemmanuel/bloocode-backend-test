@@ -47,5 +47,5 @@ interface EmployeeInterface
    * @param string $name
    * @return JsonResponse
    */
-  public function getEmployee(int $id, string $name): JsonResponse|Response;
+  public function getEmployee(int $id, Request $request): JsonResponse|Response;
 }

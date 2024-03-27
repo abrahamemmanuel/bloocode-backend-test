@@ -31,5 +31,5 @@ Route::prefix('employees')->group(function () {
     Route::post('/', [AdminController::class, 'createEmployee']);
     Route::put('/{id}', [AdminController::class, 'updateEmployee']);
     Route::delete('/{id}', [AdminController::class, 'deleteEmployee']);
-    Route::get('/{id}/{name}', [AdminController::class, 'getEmployee']);
+    Route::get('/{id}/details', [AdminController::class, 'getEmployee']);
 });

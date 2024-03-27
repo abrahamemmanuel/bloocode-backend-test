@@ -6,6 +6,7 @@ namespace App\Repository;
 use App\Models\Employee;
 use App\Models\JobRole;
 use App\Services\EmployeeService;
+use Illuminate\Database\Eloquent\Collection;
 
 class EmployeeRepository
 {
@@ -60,8 +61,11 @@ class EmployeeRepository
    * @param string $name
    * @return Employee | null
    */
-  public function findByIdOrName(int $id, string $name): Employee | null
+  public function findByIdOrName(int $id, string $name = ""): Collection | null
   {
-    return Employee::where('id', $id)->orWhere('first_name', $name)->orWhere('last_name', $name)->get();
+    return Employee::join('employee_job_role', 'employees.id', '=', 'employee_job_role.employee_id')
+      ->join('job_roles', 'job_roles.id', '=', 'employee_job_role.job_role_id')
+      ->select('employees.*', 'job_roles.title as job_role')
+      ->where('employees.id', $id)->orWhere('employees.first_name', $name)->orWhere('employees.last_name', $name)->get();
   }
 }
