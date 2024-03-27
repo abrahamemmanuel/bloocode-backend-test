@@ -28,6 +28,7 @@ class AdminController extends Controller implements EmployeeInterface, JobRoleIn
 
   public function getAllEmployees(): JsonResponse|Response
   {
+    return response()->json($this->employeeService->getAllEmployees(), ResponseCode::HTTP_OK);
   }
 
   public function createEmployee(EmployeeInputRequest $request): JsonResponse|Response

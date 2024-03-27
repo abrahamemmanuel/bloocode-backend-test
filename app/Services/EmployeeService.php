@@ -3,12 +3,15 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use App\Models\Employee;
 use App\Repository\EmployeeRepository;
 use App\Models\JobRole;
 use App\Repository\JobRoleRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class EmployeeService
 {
@@ -25,9 +28,20 @@ class EmployeeService
    * Get all employees
    * @return Array | Collection
    */
-  public function getAllEmployees(): Array | Collection
+  public function getAllEmployees(): Array
   {
-    return $this->employeeRepository->findAll();
+    $collection = $this->employeeRepository->findAll();
+    $paginationData = [
+      'message' => 'Employees retrieved successfully',
+      'success' => true,
+      'data' => $collection->items(),
+      'current_page' => $collection->currentPage(),
+      'total_pages' => $collection->lastPage(),
+      'total_items' => $collection->total(),
+      'next_page_url' => $collection->nextPageUrl(),
+      'prev_page_url' => $collection->previousPageUrl(),
+    ];
+    return $paginationData;
   }
 
   /**

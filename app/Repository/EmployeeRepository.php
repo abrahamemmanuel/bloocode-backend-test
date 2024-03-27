@@ -8,6 +8,7 @@ use App\Models\JobRole;
 use App\Services\EmployeeService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class EmployeeRepository
 {
@@ -16,9 +17,14 @@ class EmployeeRepository
   * Get all employees
   * @return Array | Collection
   */
-  public function findAll(): Array | Collection
+  public function findAll(): LengthAwarePaginator
   {
-    return Employee::all();
+    $perPage = 10; // Number of items per page
+    return DB::table('employees')
+        ->join('employee_job_role', 'employees.id', '=', 'employee_job_role.employee_id')
+        ->join('job_roles', 'job_roles.id', '=', 'employee_job_role.job_role_id')
+        ->select('employees.*', 'job_roles.title as job_role', 'employee_job_role.status')
+        ->paginate($perPage);
   }
 
   /**
