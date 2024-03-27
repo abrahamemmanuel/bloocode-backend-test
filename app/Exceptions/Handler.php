@@ -36,8 +36,8 @@ class Handler extends ExceptionHandler
 
         $this->renderable(function (ModelNotFoundException $e, $request) {
             return response()->json([
-                'error' => 'model_not_found',
-                'error_description' => 'The requested model could not be found.',
+                'error' => 'resource_not_found',
+                'error_description' => $e->getMessage(),
             ], Response::HTTP_NOT_FOUND);
         });
 
